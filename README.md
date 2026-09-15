@@ -1,55 +1,57 @@
 # TurboWarp Time-Space Sync App
 
-time-space-sync拡張の光学時刻対応と配置校正を、実カメラと実画面で検証するアプリです。
+**English** | [日本語](README.ja.md)
 
-## 位置づけ
+An app for verifying the optical time correspondence and placement calibration of the time-space-sync extension against real cameras and real displays.
 
-`kubohiroya/turbowarp-time-space-sync`拡張の検証用アプリです。会場運用の一連のセットアップ手順は消費側アプリ（realtime-motion-capture-app、photogrammetry-appのクラスターモード）が1つのSB3で持ちます。本appはそこへ手順を提供しません。
+## Where this fits
 
-隣接する工程は別リポジトリが担当します。
+This is the verification app for the `kubohiroya/turbowarp-time-space-sync` extension. The end-to-end venue setup procedure lives in a single SB3 owned by the consuming apps (realtime-motion-capture-app and photogrammetry-app in cluster mode). This app does not supply that procedure to them.
 
-- レンズ校正（内部校正）: `turbowarp-camera-calibration-app`。本appはそこが作ったプロファイルをファイルで読み込むだけで、校正手順もOpenCVも持ちません。
-- QR搬送によるWebRTCペアリング: `turbowarp-webrtc-qrcode-pairing`。複数PCモードで利用します。
+Adjacent steps belong to separate repositories.
 
-ペアリング済みの接続をアプリ間で引き継ぐことはできません。別のSB3を開くとWebRTC拡張のインスタンスが作り直され、既存の接続はblockから到達できなくなります。そのため同一PCモードを主対象とし、複数PCモードはペアリング拡張が利用可能になってから追加します。
+- Lens calibration (intrinsics): `turbowarp-camera-calibration-app`. This app only reads the profile that repository produces, as a file; it contains no calibration procedure and no OpenCV.
+- QR-carried WebRTC pairing: `turbowarp-webrtc-qrcode-pairing`. Used in multi-PC mode.
 
-## 現在の内容
+A paired connection cannot be handed over between apps. Opening a different SB3 recreates the WebRTC extension instance, and the existing connection becomes unreachable from blocks. Single-PC mode is therefore the primary target, and multi-PC mode will be added once the pairing extension is available.
 
-turbowarp-app-templateから生成した初期雛形です。用途固有の機能は未実装です。
+## What's included
 
-- 共通app-shellを利用したモード選択・案内・エラー表示。
-- 展開済みSB3ソースと、緑の旗で状態変数を更新する起動確認スクリプト。
-- SB3と配布ページのビルド、SHA-256の記録、CI。
+This is the initial scaffold generated from turbowarp-app-template. Use-case-specific features are not implemented.
 
-配布ページはTurboWarpプレイヤーを内蔵せず、起動確認用SB3のダウンロードを提供します。開発サーバーでダウンロードする際は事前にbuild:sb3を実行してください。
+- Mode selection, guidance, and error display built on the shared app-shell.
+- Unpacked SB3 sources plus a startup-check script that updates a state variable when the green flag is clicked.
+- Builds for the SB3 and the distribution page, SHA-256 recording, and CI.
 
-## 実装予定
+The distribution page does not embed the TurboWarp player; it offers the startup-check SB3 for download. Run `build:sb3` before downloading from the dev server.
 
-- 複数cameraIdを割り当て、統合参照面（時刻コードパネルと既知寸法の位置基準）を全画面表示する。
-- decoderのレベル校正と観測収集を案内し、decode率・contrast・観測数を表示する。
-- カメラ間の相対遅延を推定して提示する。表示遅延・時計差・未確定成分を分けて示し、絶対遅延が求まらないことを明示する。
-- 参照面の実寸と投影条件を入力・記録する。概算と実測を区別し、表示設定の変更時は再確認を促す。
-- 共通基準に対する配置をsolveし、再投影誤差とsolveに使っていない観測による独立検証を表示する。
-- 内部校正プロファイルをファイルから読み込む。撮影条件に適合しないもの、適合を判定できないものは適用前に拒否する。
-- 結果を書き出し・読み込む。配置結果は読込み直後をunverifiedとして扱い、再確認を通るまで確定扱いにしない。
+## Planned
 
-## モード
+- Assign multiple cameraIds and display the unified reference surface (the time-code panel and a dimensional reference of known size) full screen.
+- Guide decoder level calibration and observation gathering, showing decode rate, contrast, and observation count.
+- Estimate and present relative latency between cameras. Show display latency, clock offset, and the undetermined component separately, and state explicitly that absolute latency cannot be derived.
+- Enter and record the real-world dimensions of the reference surface and the projection conditions. Distinguish estimates from measurements, and prompt for re-confirmation when display settings change.
+- Solve placement against the common reference, and show the reprojection error together with independent validation using observations not used in the solve.
+- Load the intrinsic calibration profile from a file. Reject profiles that do not match the capture conditions, or whose match cannot be determined, before they are applied.
+- Export and import results. Treat an imported placement result as unverified until it passes re-confirmation, and never as final before that.
 
-- **同一PC**：1台のPCに接続した複数カメラを扱う。WebRTCペアリングを必要としない。主対象。
-- **複数PC**：QR搬送ペアリング拡張が利用可能になってから追加する。既定OFF。
+## Modes
 
-## 依存と責務
+- **Single PC**: Handles multiple cameras attached to one PC. Requires no WebRTC pairing. The primary target.
+- **Multi PC**: To be added once the QR-carried pairing extension is available. OFF by default.
 
-- time-space-sync：光学時刻対応の推定と、固定rig／共通基準に対する配置solve。本appの検証対象。
-- camera-source：カメラ取得・lease・撮影条件と、内部校正プロファイルの契約。
-- camera-calibration-app：内部校正プロファイルの生成側。本appはファイルで受け取るだけで、校正手順とOpenCVを持たない。
-- webrtc-qrcode-pairing／webrtc：複数PCモードで利用する。同一PCモードでは使わない。
+## Dependencies and responsibilities
 
-実際の依存はpackage.jsonのturbowarp-app-shell 0.2.0のみです。上記の用途固有の接続は予定であり、未公開の初期拡張に依存しません。追加時には拡張のexact version、配布物hash、API manifest、評価順序を固定します。
+- time-space-sync: estimation of optical time correspondence, and the placement solve against a fixed rig or common reference. The subject of this app's verification.
+- camera-source: camera acquisition, lease, and capture conditions, plus the contract for the intrinsic calibration profile.
+- camera-calibration-app: produces the intrinsic calibration profile. This app only receives it as a file and contains no calibration procedure and no OpenCV.
+- webrtc-qrcode-pairing / webrtc: used in multi-PC mode. Unused in single-PC mode.
 
-## 構成と開発
+The only actual dependency is turbowarp-app-shell 0.2.0 in package.json. The use-case-specific connections above are planned, and do not rely on any unreleased early extension. When one is added, its exact version, artifact hash, API manifest, and evaluation order will be pinned.
 
-Node.js >=22.18.0、pnpm 11.11.0。
+## Layout and development
+
+Node.js >=22.18.0, pnpm 11.11.0.
 
 ```bash
 corepack enable
@@ -58,35 +60,35 @@ pnpm check
 pnpm dev
 ```
 
-- config/app.json：名前、モード、説明、実装予定。
-- config/feature-flags.ts：起動時固定・既定OFFの実験機能フラグ。
-- scripts/project.ts：起動確認用SB3の正本。
-- apps/main/source：生成した展開済みSB3ソース。
-- src：共通シェルを利用する配布ページ。
-- public/downloads：生成SB3とrelease.json。
-- dist：配布ページとダウンロードのビルド結果。
+- `config/app.json`: name, modes, description, and planned work.
+- `config/feature-flags.ts`: experimental feature flags, fixed at startup and OFF by default.
+- `scripts/project.ts`: the source of truth for the startup-check SB3.
+- `apps/main/source`: the generated unpacked SB3 sources.
+- `src`: the distribution page built on the shared shell.
+- `public/downloads`: the generated SB3 and release.json.
+- `dist`: build output for the distribution page and downloads.
 
-project.tsやtitleを変更したらpnpm source:updateで生成ソースを更新します。生成SB3・distはGit管理対象外です。アーカイブはsb3-toolchainで生成します。
+After changing `project.ts` or the title, run `pnpm source:update` to regenerate the sources. Generated SB3 files and `dist` are not tracked by Git. Archives are produced with sb3-toolchain.
 
-## 段階導入と受け入れ基準
+## Staged rollout and acceptance criteria
 
-1. 関連GitHub Issueで既存実装の抽出対象、依存、DoD、切戻しを確定する。
-2. 用途固有の経路を既定OFFで追加し、既存側は委譲へ置き換える。
-3. 機材による統合検証で誤差・遅延・停止と復旧を記録する。
-4. 本体拡張のアルゴリズムをアプリに重複実装しない。
+1. In the related GitHub Issue, settle what to extract from the existing implementation, its dependencies, the DoD, and the rollback path.
+2. Add the use-case-specific path behind a flag that is OFF by default, and replace the existing path with delegation.
+3. Record error, latency, stalls, and recovery in hardware integration testing.
+4. Do not reimplement the core extension's algorithms inside the app.
 
-初期雛形のDoDはpnpm check成功、SB3で緑の旗による状態更新、配布ページで説明・モード選択・SB3ダウンロードが確認できることです。カメラを使う用途機能の実機検証は未実施です。
+The DoD for the initial scaffold is: `pnpm check` passes, the SB3 updates its state on the green flag, and the distribution page shows the description, mode selection, and SB3 download. Real-device verification of camera-based features has not been performed.
 
-## ロールバックとタスク管理
+## Rollback and task management
 
-新経路はconfig/feature-flags.tsのフラグOFFで止め、移行中は旧アプリ経路と互換読取りを保持します。初期フラグをONにしても用途固有の機能は実装されません。
+New paths are stopped by turning their flag OFF in `config/feature-flags.ts`, and compatibility reads for the old app path are kept during migration. Turning the initial flags ON does not implement any use-case-specific feature.
 
-GitHub Issuesを進捗の正本とし、start/done/blockedを記録します。スコープと設計判断の経緯は[Issue #1](https://github.com/kubohiroya/turbowarp-time-space-sync-app/issues/1)にあります。
+GitHub Issues are the source of truth for progress, recording start/done/blocked. The scope and the reasoning behind the design decisions are in [Issue #1](https://github.com/kubohiroya/turbowarp-time-space-sync-app/issues/1).
 
-## 抽出元
+## Origin
 
-紙芝居アプリとrealtime-motion-capture-appから抽出した共通構成を利用しています。詳しくは[抽出記録](docs/extraction.md)を参照してください。
+The shared structure is extracted from the kamishibai (picture-story) app and realtime-motion-capture-app. See the [extraction notes](docs/extraction.md) (Japanese) for details.
 
-## ライセンス
+## License
 
-MPL-2.0。packageは初期状態ではprivateです。
+MPL-2.0. The package is private in its initial state.

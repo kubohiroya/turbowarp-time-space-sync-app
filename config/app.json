@@ -1,0 +1,32 @@
+{
+  "slug": "turbowarp-time-space-sync-app",
+  "title": "TurboWarp Time-Space Sync App",
+  "summary": "time-space-sync拡張の光学時刻対応と配置校正を、実カメラと実画面で検証するアプリです。",
+  "modes": [
+    {
+      "id": "local",
+      "label": "同一PC",
+      "description": "1台のPCに接続した複数カメラを扱う。WebRTCペアリングを必要としない。主対象。"
+    },
+    {
+      "id": "remote",
+      "label": "複数PC",
+      "description": "QR搬送ペアリング拡張が利用可能になってから追加する。既定OFF。"
+    }
+  ],
+  "plannedFeatures": [
+    "複数cameraIdを割り当て、統合参照面（時刻コードパネルと既知寸法の位置基準）を全画面表示する。",
+    "decoderのレベル校正と観測収集を案内し、decode率・contrast・観測数を表示する。",
+    "カメラ間の相対遅延を推定して提示する。表示遅延・時計差・未確定成分を分けて示し、絶対遅延が求まらないことを明示する。",
+    "参照面の実寸と投影条件を入力・記録する。概算と実測を区別し、表示設定の変更時は再確認を促す。",
+    "共通基準に対する配置をsolveし、再投影誤差とsolveに使っていない観測による独立検証を表示する。",
+    "内部校正プロファイルをファイルから読み込む。撮影条件に適合しないもの、適合を判定できないものは適用前に拒否する。",
+    "結果を書き出し・読み込む。配置結果は読込み直後をunverifiedとして扱い、再確認を通るまで確定扱いにしない。"
+  ],
+  "plannedDependencies": [
+    "time-space-sync：光学時刻対応の推定と、固定rig／共通基準に対する配置solve。本appの検証対象。",
+    "camera-source：カメラ取得・lease・撮影条件と、内部校正プロファイルの契約。",
+    "camera-calibration-app：内部校正プロファイルの生成側。本appはファイルで受け取るだけで、校正手順とOpenCVを持たない。",
+    "webrtc-qrcode-pairing／webrtc：複数PCモードで利用する。同一PCモードでは使わない。"
+  ]
+}

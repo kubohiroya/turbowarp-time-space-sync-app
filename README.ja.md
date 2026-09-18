@@ -63,12 +63,12 @@ pnpm dev
 - config/app.json：名前、モード、説明、実装予定。
 - config/feature-flags.ts：起動時固定・既定OFFの実験機能フラグ。
 - scripts/project.ts：起動確認用SB3の正本。
-- apps/main/source：生成した展開済みSB3ソース。
+- apps/main/source：ビルド時に生成する展開済みSB3ソース（Git管理対象外）。
 - src：共通シェルを利用する配布ページ。
 - public/downloads：生成SB3とrelease.json。
 - dist：配布ページとダウンロードのビルド結果。
 
-project.tsやtitleを変更したらpnpm source:updateで生成ソースを更新します。生成SB3・distはGit管理対象外です。アーカイブはsb3-toolchainで生成します。
+pnpm buildがproject.tsからapps/main/sourceを生成し、sb3-toolchainでSB3にします。生成ソース・生成SB3・distはGit管理対象外です。
 
 ## 段階導入と受け入れ基準
 

@@ -63,12 +63,12 @@ pnpm dev
 - `config/app.json`: name, modes, description, and planned work.
 - `config/feature-flags.ts`: experimental feature flags, fixed at startup and OFF by default.
 - `scripts/project.ts`: the source of truth for the startup-check SB3.
-- `apps/main/source`: the generated unpacked SB3 sources.
+- `apps/main/source`: the unpacked SB3 sources, generated at build time (not tracked by Git).
 - `src`: the distribution page built on the shared shell.
 - `public/downloads`: the generated SB3 and release.json.
 - `dist`: build output for the distribution page and downloads.
 
-After changing `project.ts` or the title, run `pnpm source:update` to regenerate the sources. Generated SB3 files and `dist` are not tracked by Git. Archives are produced with sb3-toolchain.
+`pnpm build` generates `apps/main/source` from `project.ts`, then packs it with sb3-toolchain. The generated sources, SB3 files and `dist` are not tracked by Git.
 
 ## Staged rollout and acceptance criteria
 

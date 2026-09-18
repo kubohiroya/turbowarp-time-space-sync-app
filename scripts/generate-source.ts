@@ -1,4 +1,4 @@
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { assetId, backdrop, createProject } from './project.ts';
 const root = new URL('../', import.meta.url);
 const config = JSON.parse(
@@ -29,14 +29,15 @@ const files = new Map([
   ],
   [`apps/main/source/assets/${assetId}.svg`, backdrop],
 ]);
+// The directory is build output, not source: everything in it comes from the
+// scripts above. Starting from an empty directory means a file an earlier build
+// wrote -- an asset under a hash nothing references any more -- cannot survive
+// into the SB3.
+await rm(new URL('apps/main/source/', root), { recursive: true, force: true });
 for (const [path, contents] of files) {
   const url = new URL(path, root);
-  if (process.argv.includes('--write')) {
-    await mkdir(new URL('.', url), { recursive: true });
-    await writeFile(url, contents);
-  } else if ((await readFile(url, 'utf8')) !== contents) {
-    throw new Error(`${path} is stale; run pnpm source:update.`);
-  }
+  await mkdir(new URL('.', url), { recursive: true });
+  await writeFile(url, contents);
 }
 await mkdir(new URL('apps/main/source/extensions/', root), { recursive: true });
-console.log('SB3 source matches the authored project.');
+console.log('Generated apps/main/source from the authored project.');

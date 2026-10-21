@@ -1,6 +1,6 @@
 {
   "name": "@kubohiroya/turbowarp-time-space-sync-app",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "type": "module",
   "description": "カメラの内部校正、時刻対応、空間配置校正を一連の操作として案内するアプリです。",
@@ -27,7 +27,7 @@
     "template:init": "node scripts/init-app.ts"
   },
   "dependencies": {
-    "@kubohiroya/turbowarp-app-shell": "0.3.0"
+    "@kubohiroya/turbowarp-app-shell": "0.3.1"
   },
   "devDependencies": {
     "@kubohiroya/sb3-toolchain": "0.12.0",

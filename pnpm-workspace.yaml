@@ -1,3 +1,4 @@
 packages: []
 minimumReleaseAgeExclude:
   - '@kubohiroya/turbowarp-app-shell@0.3.0'
+  - '@kubohiroya/turbowarp-app-shell@0.3.1'

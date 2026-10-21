@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@kubohiroya/turbowarp-app-shell':
-        specifier: 0.3.0
-        version: 0.3.0
+        specifier: 0.3.1
+        version: 0.3.1
     devDependencies:
       '@eslint/js':
         specifier: 9.39.5
@@ -118,8 +118,8 @@ packages:
     engines: {node: '>=22.12.0'}
     hasBin: true
 
-  '@kubohiroya/turbowarp-app-shell@0.3.0':
-    resolution: {integrity: sha512-BtbOcbs00bCWioDoyXgOqtU/VASLYzX9JkMXnuMBT0jkZcKvkR2eiw0Ir0jDOD7LDxu0pu/l7bMnWf2WOE9hCA==}
+  '@kubohiroya/turbowarp-app-shell@0.3.1':
+    resolution: {integrity: sha512-fVNVA/5SOTO35L9Q4aUTYpxXK+n6FtnP3RvVUpv0huHYcawDS8SAuiyYTA/Bh2OMAuosXF0x5bvEEhlESEd3kA==}
     engines: {node: '>=22'}
 
   '@oxc-project/types@0.149.0':
@@ -1021,7 +1021,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@kubohiroya/turbowarp-app-shell@0.3.0': {}
+  '@kubohiroya/turbowarp-app-shell@0.3.1': {}
 
   '@oxc-project/types@0.149.0': {}
 

@@ -47,7 +47,7 @@ The distribution page does not embed the TurboWarp player; it offers the startup
 - camera-calibration-app: produces the intrinsic calibration profile. This app only receives it as a file and contains no calibration procedure and no OpenCV.
 - webrtc-qrcode-pairing / webrtc: used in multi-PC mode. Unused in single-PC mode.
 
-The only actual dependency is turbowarp-app-shell 0.2.0 in package.json. The use-case-specific connections above are planned, and do not rely on any unreleased early extension. When one is added, its exact version, artifact hash, API manifest, and evaluation order will be pinned.
+The only actual dependency is turbowarp-app-shell 0.3.0 in package.json. The use-case-specific connections above are planned, and do not rely on any unreleased early extension. When one is added, its exact version, artifact hash, API manifest, and evaluation order will be pinned.
 
 ## Layout and development
 

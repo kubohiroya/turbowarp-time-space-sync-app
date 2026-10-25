@@ -1,6 +1,6 @@
 # TurboWarp Time-Space Sync App
 
-[English](README.md) | **日本語**
+[English](README.md) | 日本語
 
 time-space-sync拡張の光学時刻対応と配置校正を、実カメラと実画面で検証するアプリです。
 

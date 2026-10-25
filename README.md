@@ -1,6 +1,6 @@
 # TurboWarp Time-Space Sync App
 
-**English** | [日本語](README.ja.md)
+English | [日本語](README.ja.md)
 
 An app for verifying the optical time correspondence and placement calibration of the time-space-sync extension against real cameras and real displays.
 

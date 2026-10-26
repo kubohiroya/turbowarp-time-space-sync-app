@@ -3,16 +3,16 @@
   "version": "0.2.0",
   "private": true,
   "type": "module",
-  "description": "\u30ab\u30e1\u30e9\u306e\u5185\u90e8\u6821\u6b63\u3001\u6642\u523b\u5bfe\u5fdc\u3001\u7a7a\u9593\u914d\u7f6e\u6821\u6b63\u3092\u4e00\u9023\u306e\u64cd\u4f5c\u3068\u3057\u3066\u6848\u5185\u3059\u308b\u30a2\u30d7\u30ea\u3067\u3059\u3002",
+  "description": "カメラの内部校正、時刻対応、空間配置校正を一連の操作として案内するアプリです。",
   "license": "MPL-2.0",
   "author": "Hiroya Kubo",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kubohiroya/turbowarp-time-space-sync-app.git"
   },
-  "packageManager": "pnpm@11.11.0",
+  "packageManager": "pnpm@11.28.8",
   "engines": {
-    "node": ">=22.18.0"
+    "node": ">=24"
   },
   "scripts": {
     "dev": "vite --host 127.0.0.1",

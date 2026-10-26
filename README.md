@@ -51,9 +51,10 @@ The only actual dependency is turbowarp-app-shell 0.3.0 in package.json. The use
 
 ## Layout and development
 
-Node.js >=22.18.0, pnpm 11.11.0.
+Node.js >=24, pnpm 11.28.8.
 
 ```bash
+npm install --global corepack@latest
 corepack enable
 pnpm install --frozen-lockfile
 pnpm check

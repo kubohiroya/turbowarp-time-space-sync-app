@@ -1,8 +1,4 @@
 packages: []
 minimumReleaseAgeExclude:
-  - '@kubohiroya/turbowarp-app-shell@0.3.0'
-  - '@kubohiroya/turbowarp-app-shell@0.3.1'
-  - '@kubohiroya/turbowarp-app-shell@0.4.0'
-  - '@kubohiroya/sb3-toolchain@0.17.0'
-  - '@kubohiroya/turbowarp-app-shell@0.5.0'
-  - '@kubohiroya/sb3-toolchain@0.18.0'
+  - '@kubohiroya/turbowarp-app-shell@0.3.0 || 0.3.1 || 0.4.0 || 0.5.0 || 0.6.0'
+  - '@kubohiroya/sb3-toolchain@0.17.0 || 0.18.0 || 0.19.0'

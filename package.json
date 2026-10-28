@@ -1,11 +1,15 @@
 {
   "name": "@kubohiroya/turbowarp-time-space-sync-app",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "type": "module",
   "description": "カメラの内部校正、時刻対応、空間配置校正を一連の操作として案内するアプリです。",
   "license": "MPL-2.0",
-  "author": "Hiroya Kubo",
+  "author": {
+    "name": "Hiroya Kubo",
+    "email": "hiroya@cuc.ac.jp",
+    "url": "https://github.com/kubohiroya"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kubohiroya/turbowarp-time-space-sync-app.git"
@@ -27,10 +31,10 @@
     "template:init": "node scripts/init-app.ts"
   },
   "dependencies": {
-    "@kubohiroya/turbowarp-app-shell": "^0.5.0"
+    "@kubohiroya/turbowarp-app-shell": "^0.6.0"
   },
   "devDependencies": {
-    "@kubohiroya/sb3-toolchain": "^0.18.0",
+    "@kubohiroya/sb3-toolchain": "^0.19.0",
     "@eslint/js": "9.39.5",
     "@types/node": "24.13.3",
     "eslint": "9.39.5",

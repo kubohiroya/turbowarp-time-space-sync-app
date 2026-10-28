@@ -9,15 +9,15 @@ importers:
   .:
     dependencies:
       '@kubohiroya/turbowarp-app-shell':
-        specifier: ^0.5.0
-        version: 0.5.0
+        specifier: ^0.6.0
+        version: 0.6.0
     devDependencies:
       '@eslint/js':
         specifier: 9.39.5
         version: 9.39.5
       '@kubohiroya/sb3-toolchain':
-        specifier: ^0.18.0
-        version: 0.18.0(supports-color@7.2.0)
+        specifier: ^0.19.0
+        version: 0.19.0(supports-color@7.2.0)
       '@types/node':
         specifier: 24.13.3
         version: 24.13.3
@@ -113,13 +113,13 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@kubohiroya/sb3-toolchain@0.18.0':
-    resolution: {integrity: sha512-lzb72VnPESRQoTnP3oIA8jbpHgIqaj///xX7WBg/8lqEbgPA0G46Osm6NH9Mp19gqNHfS87Em4yC2b4bTlHe3w==}
+  '@kubohiroya/sb3-toolchain@0.19.0':
+    resolution: {integrity: sha512-hVEkzREo1553yYXY9xpCqq9mvz/v/IV+1E8yy/He9wL5cIRbs5a6yzcGhnN5mmWKKXyQS7LPCZYbrWCe5+L5Mw==}
     engines: {node: '>=24'}
     hasBin: true
 
-  '@kubohiroya/turbowarp-app-shell@0.5.0':
-    resolution: {integrity: sha512-psDDUSfTCz9gZYrM9OS0KHMr49Wqqro1F2lEzXTpOhyKqgcvyw086HcitgAUaJVT87txQSM94ZzTDol0F/GVZw==}
+  '@kubohiroya/turbowarp-app-shell@0.6.0':
+    resolution: {integrity: sha512-+A3tVBy5s7/1s5bxLDd6LNVyEbWotXaF1bFEttIX1Wh5E80Yz4q0G5otphOAPMUPSsKJ023QZDfiLKrtG5U+4g==}
     engines: {node: '>=24'}
 
   '@oxc-project/types@0.148.0':
@@ -1117,7 +1117,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.6.0
 
-  '@kubohiroya/sb3-toolchain@0.18.0(supports-color@7.2.0)':
+  '@kubohiroya/sb3-toolchain@0.19.0(supports-color@7.2.0)':
     dependencies:
       fflate: 0.8.3
       music-metadata: 11.14.0(supports-color@7.2.0)
@@ -1127,7 +1127,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@kubohiroya/turbowarp-app-shell@0.5.0': {}
+  '@kubohiroya/turbowarp-app-shell@0.6.0': {}
 
   '@oxc-project/types@0.148.0': {}
 
